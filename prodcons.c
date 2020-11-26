@@ -18,12 +18,12 @@
 #include "pcmatrix.h"
 #include "prodcons.h"
 
-// Define Locks and Condition variables here
 //Buffer mutex lock protects adding and removing data from the shared bounded buffer
 pthread_mutex_t buffer_mutex = PTHREAD_MUTEX_INITIALIZER;
 //Mutex lock combines with condition variables to signal when the bounded buffer is full or empty
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
+//Condition variables here
 pthread_cond_t full = PTHREAD_COND_INITIALIZER;
 pthread_cond_t empty = PTHREAD_COND_INITIALIZER;
 
@@ -37,7 +37,7 @@ counter_t cons;
 // bigmatrix = 1 2 3 4 5 6 7 8 9 10 11  ....                    ....
 //                                      consumer                producer
 
-//Task 2: Implements get() and put() routines for the bounded buffer
+//Task 2. Implements get() and put() routines for the bounded buffer
  /*
   * Method put the matrix value at producer index
   *   Argument: Matrix value
@@ -84,6 +84,7 @@ Matrix * get()
   return mat;
 }
 
+//Task 3. Call put() from within prod_worker
 /*
  *  Method prod_worker produce NUMBER_OF_MATRICES and place them to the bigmatrix
  *
@@ -141,6 +142,7 @@ void *prod_worker(void *arg)
   return 0;
 }
 
+//Task 4: Call get() from within prod_worker
 /*
  * Method cons_worker removing matrices from bigmatrix and compute multiplication
  *      1. Remove mat1 from the shared bounded buffer

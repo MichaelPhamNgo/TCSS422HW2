@@ -86,7 +86,7 @@ int main (int argc, char * argv[])
   // Seed the random number generator with the system time
   srand((unsigned) time(&t));
 
-  //Task 1: Implements a bounded buffer
+  //Task 1. Implements a bounded buffer
   bigmatrix = (Matrix **) malloc(sizeof(Matrix *) * BOUNDED_BUFFER_SIZE);
 
   printf("Producing %d matrices in mode %d.\n",NUMBER_OF_MATRICES,MATRIX_MODE);
@@ -94,9 +94,12 @@ int main (int argc, char * argv[])
   printf("With %d producer and consumer thread(s).\n",numw);
   printf("\n");
 
+  //Task 6. use an array of producer threads, and an array of consumer threads
   pthread_t pr[numw];
-  // pthread_t pr;
   pthread_t co[numw];
+
+  //Task 5. create a produce thread and a consume thread
+  // pthread_t pr;
   // pthread_t co;
 
   // consume ProdConsStats from producer and consumer threads
